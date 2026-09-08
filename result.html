@@ -1,0 +1,309 @@
+{% extends "base.html" %} {% block content %}
+
+<center><h2>Vitamin Deficiency Classifier</h2>
+<style> .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: #2dcba7;
+   color: black;
+   text-align: center;
+   font-size: 25px;
+   font-weight: bold;
+}</style>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f4f4f4;
+    }
+    h2, h3 {
+        color: #333;
+    }
+</style>
+<div>
+   
+<h2>Input Image</h2>
+    {%if img_src!=""%}
+    <img src="{{img_src}}" height="200" width="200"/>
+    {%endif%}
+<h2>Preprocessed Image</h2>
+{%if cleanedpath!=""%}
+    <img src="{{cleanedpath}}" height="200" width="200"/>
+    {%endif%}
+	{% if predIdxs == 0 %}
+    <h2>Predicted as: Normal</h2>
+    <h3>Recommended Diet</h3>
+    <p>Continue your regular diet.</p>
+    {% endif %}
+
+    {% if predIdxs == 1 %}
+    <h2>Predicted as: Vitamin B Deficiency</h2>
+    <h3>Breif Description</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Predicted Vitamin</th>
+                <th>Functions</th>
+                <th>Deficiency Disease</th>
+                <th>Symptoms</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Vitamin B</td>
+                <td>Helps to Release Energy</td>
+                <td>Beriberi</td>
+                <td><li>Very Little energy to Work</li><li>Week muscles</li></td>
+               
+            </tr>
+            </tbody>
+            </table>
+    <br>
+    <p><span style="color: red; font-size: large;">Causes:</span> B deficiency may lead to a reduction in healthy red blood cells (anaemia). The nervous system may also be affected. Diet or certain medical conditions may be the cause. Symptoms are rare but can include fatigue, breathlessness, numbness, poor balance and memory trouble. Treatment includes dietary changes, B shots or supplements. </p>
+
+    <h3>Vegetarian Diet</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Food Items</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dairy Products</td>
+                <td>Milk, Yogurt, Cheese</td>
+                <td>Excellent sources of riboflavin (Vitamin B2).</td>
+            </tr>
+            <tr>
+                <td>Green Vegetables</td>
+                <td>Spinach, Asparagus, Broccoli</td>
+                <td>Provide Vitamin B2 and fiber.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Non-Vegetarian Diet</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Food Items</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Eggs</td>
+                <td>Eggs</td>
+                <td>A good source of Vitamin B2 and other nutrients.</td>
+            </tr>
+            <tr>
+                <td>Lean Meats</td>
+                <td>Liver, Kidneys</td>
+                <td>Rich in Vitamin B and other essential nutrients.</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    {% endif %}
+
+    {% if predIdxs == 2 %}
+    <h2>Predicted as: Vitamin D Deficiency</h2>
+    <h3>Breif Description</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Predicted Vitamin</th>
+                <th>Functions</th>
+                <th>Deficiency Disease</th>
+                <th>Symptoms</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Vitamin D</td>
+                <td>Helps to Strong Bones and Teeth</td>
+                <td>Rickets</td>
+                <td><li>Week Bones</li><li>Decaying Teeth Bow Legs and development of Pigeon chest Conditions</li></td>
+               
+            </tr>
+            </tbody>
+            </table>
+    <p><span style="color: red; font-size: large;">Causes:</span> Vitamin D deficiency can lead to a loss of bone density, which can contribute to osteoporosis and fractures (broken bones). Severe vitamin D deficiency can also lead to other diseases. In children, it can cause rickets. Rickets is a rare disease that causes the bones to become soft and bend. </p>
+
+
+    <h3>Vegetarian Diet</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Food Items</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fortified Foods</td>
+                <td>Fortified Milk, Fortified Orange Juice, Fortified Cereals</td>
+                <td>Enriched with Vitamin D for bone health.</td>
+            </tr>
+            <tr>
+                <td>Mushrooms</td>
+                <td>UV-Exposed Mushrooms</td>
+                <td>Rich in Vitamin D when exposed to sunlight.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Non-Vegetarian Diet</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Food Items</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fish</td>
+                <td>Salmon, Mackerel, Sardines</td>
+                <td>Natural sources of Vitamin D and omega-3 fatty acids.</td>
+            </tr>
+            <tr>
+                <td>Egg Yolks</td>
+                <td>Egg Yolks</td>
+                <td>Contain moderate amounts of Vitamin D; consume whole eggs for benefits.</td>
+            </tr>
+            <tr>
+                <td>Cod Liver Oil</td>
+                <td>Cod Liver Oil</td>
+                <td>High in Vitamin D and omega-3 fatty acids; available in capsules or liquid form.</td>
+            </tr>
+        </tbody>
+        <br>
+        
+    
+    </table>
+    {% endif %}
+
+    {% if predIdxs == 3 %}
+    <h2>Predicted as: Vitamin E Deficiency</h2>
+    <h3>Breif Description</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Predicted Vitamin</th>
+                <th>Functions</th>
+                <th>Deficiency Disease</th>
+                <th>Symptoms</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Vitamin E</td>
+                <td>Helps to Form Red Blood Cells and Keep the immune system strong</td>
+                <td>Nerve and muscle Damage</td>
+                <td><li>Loss of sensation in arms and legs</li><li>Weekness in muscles</li><li>Problems in vision</li> <li>Week Immunity</li></td>
+               
+            </tr>
+            </tbody>
+            </table>
+            <br>
+    <p><span style="color: red; font-size: large;">Causes:</span> Vitamin E needs some fat for the digestive system to absorb it. Vitamin E deficiency can cause nerve and muscle damage that results in loss of feeling in the arms and legs, loss of body movement control, muscle weakness, and vision problems. Another sign of deficiency is a weakened immune system. </p>
+
+    <h3>Vegetarian Diet</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Food Items</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Nuts and Seeds</td>
+                <td>Almonds, Sunflower Seeds, Hazelnuts, Pine Nuts, Peanuts</td>
+                <td>Rich in Vitamin E; can be eaten raw or added to dishes.</td>
+            </tr>
+            <tr>
+                <td>Vegetable Oils</td>
+                <td>Wheat Germ Oil, Sunflower Oil, Safflower Oil</td>
+                <td>High in Vitamin E; great for cooking or as salad dressings.</td>
+            </tr>
+            <tr>
+                <td>Leafy Greens</td>
+                <td>Spinach, Swiss Chard, Kale</td>
+                <td>Rich in Vitamin E; can be eaten cooked or raw.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>Non-Vegetarian Diet</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Food Items</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fish</td>
+                <td>Salmon, Trout, Sardines</td>
+                <td>Rich in Vitamin E and omega-3 fatty acids; beneficial for heart health.</td>
+            </tr>
+            <tr>
+                <td>Egg Yolks</td>
+                <td>Egg Yolks</td>
+                <td>Contain moderate amounts of Vitamin E; consume whole eggs for benefits.</td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    
+    
+    {% endif %}
+    
+    
+
+        <span> </span>
+    </h3>
+
+
+
+
+
+
+
+
+
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>
+{% endblock %}
